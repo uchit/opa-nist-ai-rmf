@@ -1,0 +1,34 @@
+# Same workload as compliant.yaml but with eval_set removed.
+# Expected: deny contains "eval_set_required" citation.
+apiVersion: v1
+kind: AIWorkload
+metadata:
+  name: fraud-scoring
+  annotations:
+    ai_workload.accountability_officer: "ai-officer@example.com"
+    ai_workload.risk_tier: "high"
+    ai_workload.risk_rationale: "Customer-facing lending decision"
+    ai_workload.eu_high_risk: "true"
+    ai_workload.conformity_assessment_ref: "CA-2026-fraud-v3"
+spec:
+  data:
+    lineage_ref: "catalogue://customer-domain/transactions-v7"
+  model:
+    provider: "anthropic"
+    region: "ap-southeast-2"
+    version: "claude-sonnet-4-6"
+  prompt:
+    registry_ref: "prompts://fraud/scoring/v12"
+  evals:
+    set_ref: ""   # <-- violation
+  guardrails:
+    input: ["lakera-guard"]
+    output: ["bedrock-guardrails"]
+  observability:
+    audit_sink: "s3://audit-bucket/fraud-scoring/"
+    retention_days: 2555
+  oversight:
+    pattern: "human-review-above-10k"
+    sla_minutes: 240
+  cost:
+    attribution_tag: "team:fraud-platform"
