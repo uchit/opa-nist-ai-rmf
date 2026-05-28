@@ -9,7 +9,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![OPA](https://img.shields.io/badge/OPA-v1.0+-7d4698)](https://www.openpolicyagent.org/)
-[![Tests](https://img.shields.io/badge/tests-passing-43d39e)](#tests)
+[![Tests](https://github.com/uchit/opa-nist-ai-rmf/actions/workflows/test.yml/badge.svg)](https://github.com/uchit/opa-nist-ai-rmf/actions/workflows/test.yml)
 
 ---
 
